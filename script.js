@@ -117,123 +117,90 @@ const flavors = [
 
 //DOM VARIABLES
 
-let searchInput = document.getElementById("searchbar");
-let flavorImages = document.getElementById("thumbnails");
-let search = document.getElementById("search");
-let clear = document.getElementById("clear");
-let icon = document.getElementsByClassName("img");
-let modal = document.getElementById("modal");
-let closeBtn = document.getElementById("closeBtn");
-let modalText = document.getElementById("modalText");
-let modalDesc = document.getElementById("modalDesc");
+const searchBar = document.getElementById("searchbar");
+const thumbnailContainer = document.getElementById("thumbnail-container");
+const searchBtn = document.getElementById("searchBtn");
+const resetBtn = document.getElementById("resetBtn");
+const thumbnailArr = document.getElementsByClassName("img");
+const modal = document.getElementById("modal");
+const modalCloseBtn = document.getElementById("modalCloseBtn");
+const modalText = document.getElementById("modalText");
+const modalDesc = document.getElementById("modalDesc");
+const modalImg = document.getElementById("modalImg");
 
 
 //EVENT LISTENERS
 
-closeBtn.addEventListener("click", closeModal);
+modalCloseBtn.addEventListener("click", closeModal);
 window.addEventListener("click", clickOutside);
 
 
-searchInput.addEventListener("keypress", function() {
-   //console.log("search executed");
-    if (searchInput.value.length > 2 && event.keyCode == 13) {
+searchBar.addEventListener("keypress", function() {
+
+    if (searchBar.value.length > 2 && event.keyCode == 13) {
       enterSearch();
     }
 });
 // runs search when enter key is pressed while searchbar is selected
 
 
-// searchInput.addEventListener("keydown", function() {
- 
-//   if (event.keyCode == 8) {
-//   searchInput.value = "";
-//   clearFlavors();
-//   }
-// });
-// // resets search results when backspace is pressed
-
-
-search.addEventListener("click", function() {
-  if (searchInput.value.length > 2) {
+searchBtn.addEventListener("click", function() {
+  if (searchBar.value.length > 2) {
     enterSearch();
   }
 });
 // runs search when search button is clicked
 
 
-clear.addEventListener("click", clearFlavors);
+resetBtn.addEventListener("click", resetFlavors);
 // clears search results when reset button is clicked
 
 
-clear.addEventListener("keypress", function(){
+resetBtn.addEventListener("keypress", function(){
  
   if (event.keyCode == 13) {
-    clearFlavors();
+    resetFlavors();
   }
  });
 // clears search results when enter key is pressed and reset button is selected
 
-// function openModal() {
-//   modal.style.display = "block";
-// }
-
-// Loops through images and adds event listeners to each
-function addMouseListeners() {
-for (let i = 0; i < icon.length; i++) {
-  icon[i].addEventListener("mouseenter", function(event) {
-
-    event.target.nextSibling.className = "name";
-  });
-
-    icon[i].addEventListener("mouseleave", function(event) {
-    event.target.nextSibling.className = "name-hide";
-  });
-
-    icon[i].addEventListener("click", function(event) {
-      console.log(event.target.parentNode.id +" was clicked");
-      modal.style.display = "block";
-      modalText.innerHTML = event.target.parentNode.name;
-      modalDesc.innerHTML = event.target.parentNode.desc;
-      let generatedImg = document.createElement("img");
-      generatedImg.src = event.target.src;
-      generatedImg.id = "generatedImg";
-      modalText.parentNode.appendChild(generatedImg);
-    });
-  }
-};
-
 
 //FUNCTIONS
 
-// function populateImages() {
-//   flavors.forEach(function(obj) {
-//   let img = document.createElement("img");
-//   img.src = obj.image;
-//   img.id = obj.flavorID;
-//   img.className = "img img-selected";
-//   flavorImages.appendChild(img);
-//   let desc = document.createElement("p");
-//   let descText = document.createTextNode("obj.name"); 
-//   desc.appendChild(descText);
-//   desc.className= "name";
-//   flavorImages.appendChild(desc);
-//   });
-// };
+function addMouseListeners() {
+  for (let i = 0; i < thumbnailArr.length; i++) {
+
+  thumbnailArr[i].addEventListener("mouseenter", function(event) {
+    event.target.nextSibling.className = "name";
+  });
+
+    thumbnailArr[i].addEventListener("mouseleave", function(event) {
+    event.target.nextSibling.className = "name-hide";
+  });
+
+    thumbnailArr[i].addEventListener("click", clickImage);
+  }
+};
+// Loops through images and adds event listeners to each.
+// The first two listeners allow flavor name to be toggled when mouse enters/leaves.
+// Third listener opens modal box when an image is clicked.
+
 
 function populateImages() {
   flavors.forEach(function(obj) {
+  
   let imgNode = document.createElement("div"); 
   imgNode.id = obj.flavorID; 
   imgNode.name = obj.name;
   imgNode.desc = obj.description;
-  flavorImages.appendChild(imgNode);
-  // imgNode.className= "name-hide name";
+  thumbnailContainer.appendChild(imgNode);
+  // sets up flavor thumbnail container and assigns attributes
 
   let img = document.createElement("img");
   img.src = obj.image;
-
   img.className = "img";
   imgNode.appendChild(img);
+  // sets up flavor thumbnails and assigns attributes
 
   let desc = document.createElement("p");
   let descText = document.createTextNode(obj.name); 
@@ -241,52 +208,42 @@ function populateImages() {
   desc.appendChild(descText);
   desc.id = obj.flavorID + "-desc";
   desc.className = "name-hide";
+  // sets up <p> element to receive description text from flavors object
   });
 };
-
-// function toggleClass(element) {
-//   element.classList.toggle("name-hide");
-// }
+// populates flavor images on page which contain object data that can be used by script
 
 
-// takes image URL from flavors object and adds <img> elements to DOM
+function clickImage(event) {
+      console.log(event.target.parentNode.id +" was clicked");
+      modal.style.display = "block";
+      modalText.innerHTML = event.target.parentNode.name;
+      modalDesc.innerHTML = event.target.parentNode.desc;
+      modalImg.src = event.target.src;
+    }
+// function to generate modal content when img is clicked
 
-
-// function getQueries() {
-//   let queries = searchInput.value.split(" ");
-//   let regexArr = queries.map(function(query) {
-//     return new RegExp(query + "|" + query.slice(0,-1), "i");
-//   });
-//   return flavors.filter(function(obj) {
-//       return regexArr.every(function(regex) {
-//        return !regex.test(obj.tags);
-//       });
-//   });
-// };
-// // returns flavor objects which match the user's search inputs
-// this is an older version that tested an array of regexes against each object. the newer version converts the user's input into a single regex
 
 
 function getQueries() {
-  let query = searchInput.value.split(" ");
+  let query = searchBar.value.split(" ");
   query = query.join("_");
   let regex = new RegExp(query + "|" + query.slice(0,-1), "i");
   return flavors.filter(function(obj) {
     return !regex.test(obj.tags);
   });
 };
-// converts user input into a single regex and then returns objects which do not contain corresponding tags
+// normalizes user input into a single regex and then returns array of objects which do not contain corresponding tags
 
 
 function removeNode(arr) {
+
   arr.forEach(function(obj) {
-    // let parent = document.getElementById("thumbnails");
-    // let child = document.getElementById(obj.flavorID);
-    // parent.removeChild(child);
-    document.getElementById("thumbnails").removeChild(document.getElementById(obj.flavorID));
+    document.getElementById("thumbnail-container").removeChild(document.getElementById(obj.flavorID));
   })
 };
 // accepts array from getQueries() and uses object flavorID property to delete corresponding nodes from HTML
+
 
 function checkNumberOfElements() {
 
@@ -294,13 +251,8 @@ function checkNumberOfElements() {
     return document.contains(document.getElementById(obj.flavorID));
   });
 };
+// returns whether or not full list of flavors is currently displayed on page
 
-// function howManyElements() {
-//   let arr = flavors.map(function(obj) {
-//     return document.contains(document.getElementById(obj.flavorID));
-//   });
-//   return arr.length;
-// }
 
 function enterSearch() {
 
@@ -310,27 +262,27 @@ function enterSearch() {
 
   } else {
 
-    //alert("Please reset the page before searching again");
-    clearFlavors();
+    resetFlavors();
     removeNode(getQueries());
   }
 };
-// checks which elements are still on the page, then decides whether to execute search
+// removes nodes of flavors which do not match user's search
 
 
-function clearFlavors() {
-  flavorImages.innerHTML ="";
-//  searchInput.value = "";
+function resetFlavors() {
+  thumbnailContainer.innerHTML ="";
+  //  searchBar.value = "";
   populateImages();
   addMouseListeners();
 };
-// for use when search parameters are cleared. deletes all flavors from page and repopulates them 
+// for use when page is reset. deletes all flavors from page and repopulates them 
 
 
 function closeModal() {
   modal.style.display = "none";
-  generatedImg.remove();
+  modalImg.src = "";
 }
+// functioned called inside event listener to close modal when the X icon is clicked
 
 
 function clickOutside(e) {
@@ -338,17 +290,17 @@ function clickOutside(e) {
       closeModal();
     }
 }
-
-
+// closes modal box by clicking outside of it
 
 
 //CODE TO EXECUTE ON PAGE OPEN
 
 populateImages();
 addMouseListeners();
-// initializes the page with all available ice cream flavors 
+// initializes the page with all available ice cream flavors and adds event listeners to all flavor elements 
 
 
+// *************************************************************
 
 //The below is some practice 
 // let names = ["tom", "ted", "bill", "peter"];
@@ -363,19 +315,26 @@ addMouseListeners();
 // });
 
 
-
-// returns objects whose tags don't match user's input
-// function findFlavorsToDelete() {
-
-//   let regex = new RegExp(searchInput.value + "|" + searchInput.value.slice(0,-1), "i");
-//   console.log(regex);
+// function getQueries() {
+//   let queries = searchBar.value.split(" ");
+//   let regexArr = queries.map(function(query) {
+//     return new RegExp(query + "|" + query.slice(0,-1), "i");
+//   });
 //   return flavors.filter(function(obj) {
-//     return !regex.test(obj.tags);
-//   }) 
-// }
+//       return regexArr.every(function(regex) {
+//        return !regex.test(obj.tags);
+//       });
+//   });
+// };
+// // returns flavor objects which match the user's search inputs
+// this is an older version that tested an array of regexes against each object. the newer version converts the user's input into a single regex
 
 
-
-// create global regex variable 
-//let regexInit = "initial value";
-//let regex = new RegExp("initial", "i");
+// searchBar.addEventListener("keydown", function() {
+ 
+//   if (event.keyCode == 8) {
+//   searchBar.value = "";
+//   resetFlavors();
+//   }
+// });
+// // resets search results when backspace is pressed

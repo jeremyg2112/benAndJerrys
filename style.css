@@ -22,7 +22,7 @@ h1, h2 {
 p {
     color: rgb(20,40,130);
     font-family: 'Baloo Chettan', cursive;
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 
 #search_container, #searchbar {
@@ -39,7 +39,7 @@ p {
   border: solid 3px lightblue
 }
 
-#generatedImg {
+#modalImg {
   max-height: 250px;
 }
 
@@ -58,7 +58,7 @@ p {
   font-size: 18px;
 }
 
-#thumbnails {
+#thumbnail-container {
   margin-top: 45px;
   margin-left: 5%;
   margin-right: 5%;
@@ -67,21 +67,20 @@ p {
   flex-wrap: wrap;
 }
 
-#thumbnails > div > img {
-  padding: 70px;
+#thumbnail-container > div > img {
+/*   padding: 70px;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 20px; */
   max-height: 250px;
   transition: all 0.2s;
-  margin-right: 1px;
-  margin-left: 1px;
+  margin: 20px 70px;
 }
 
-#thumbnails > div > img:hover {
+#thumbnail-container > div > img:hover {
   transform: scale(1.1);
 }
 
-@media (max-width: 850px) {
+/* @media (max-width: 850px) {
   h1 {
     font-size: 28px;
   }
@@ -104,7 +103,7 @@ p {
     width: 140px;
   }
 }
-
+ */
 
 /*
 
@@ -145,24 +144,26 @@ p {
   position: fixed;
   top: 50%;
   left: 50%;
+
   transform: translate(-50%, -50%);
   background-color: #f4f4f4;
 /*  left: -25%;
   right: -25%;*/
-  margin: 0 auto;
+/*   margin: 0 auto; */
   padding: 25px 50px 50px 50px;
   width: auto;
   min-width: 40%;
   height: auto;
+/*   max-height: 100%; */
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
-#closeBtn {
+#modalCloseBtn {
   float: right;
   font-size: 2em;
 }
 
-#closeBtn:hover {
+#modalCloseBtn:hover {
   cursor: pointer;
 }
