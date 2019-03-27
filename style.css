@@ -1,0 +1,168 @@
+body {
+/*  width: 100%; */
+  background-color: #FFE5E9;
+}
+
+h1 {
+  font-size: 48px;
+/*  padding-top: 20px;*/
+}
+
+h2 {
+  font-size: 22px;
+}
+
+h1, h2 {
+  margin: 50px;
+  text-align: center;
+    color: rgb(20,40,130);
+    font-family: 'Baloo Chettan', cursive;
+}
+
+p {
+    color: rgb(20,40,130);
+    font-family: 'Baloo Chettan', cursive;
+    font-size: 1.5em;
+}
+
+#search_container, #searchbar {
+  text-align: center;
+}
+
+#search_container {
+  width: 100%;
+}
+
+#searchbar {
+  min-width: 250px;
+  height: 20px;
+  border: solid 3px lightblue
+}
+
+#generatedImg {
+  max-height: 250px;
+}
+
+.name-hide {
+  text-align: center;
+  color: #FFE5E9;
+  font-family: 'Baloo Chettan', cursive;
+  font-size: 18px;
+  opacity: 0%;
+}
+
+.name {
+  text-align: center;
+  color: rgb(20,40,130);
+  font-family: 'Baloo Chettan', cursive;
+  font-size: 18px;
+}
+
+#thumbnails {
+  margin-top: 45px;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#thumbnails > div > img {
+  padding: 70px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-height: 250px;
+  transition: all 0.2s;
+  margin-right: 1px;
+  margin-left: 1px;
+}
+
+#thumbnails > div > img:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 850px) {
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    display: none;
+  }
+  #thumbnails > div > img {
+    max-height: 150px;
+    margin: 1px;
+
+  }
+  #thumbnails {
+    margin-top: 30px;
+  }
+  #searchbar {
+    text-align: center;
+  }
+  button {
+    height: 40px;
+    width: 140px;
+  }
+}
+
+
+/*
+
+#tags-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  
+  .tags {
+    flex: 0 0 auto;
+  }
+}
+
+.tags {
+  display: inline-block;
+  min-height: 100px;
+  min-width: 100px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+*/
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalContent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f4f4f4;
+/*  left: -25%;
+  right: -25%;*/
+  margin: 0 auto;
+  padding: 25px 50px 50px 50px;
+  width: auto;
+  min-width: 40%;
+  height: auto;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+#closeBtn {
+  float: right;
+  font-size: 2em;
+}
+
+#closeBtn:hover {
+  cursor: pointer;
+}
