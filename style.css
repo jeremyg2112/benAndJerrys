@@ -36,8 +36,18 @@ p {
 #searchbar {
   min-width: 250px;
   height: 20px;
+  width: 400px;
   border: solid 3px lightblue
 }
+
+#searchBtn, #resetBtn {
+    margin-top: 20px;
+    min-height: 30px;
+    width: 80px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
 
 #modalImg {
   max-height: 250px;
@@ -81,30 +91,6 @@ p {
   transform: scale(1.1);
 }
 
-/* @media (max-width: 850px) {
-  h1 {
-    font-size: 28px;
-  }
-  h2 {
-    display: none;
-  }
-  #thumbnails > div > img {
-    max-height: 150px;
-    margin: 1px;
-
-  }
-  #thumbnails {
-    margin-top: 30px;
-  }
-  #searchbar {
-    text-align: center;
-  }
-  button {
-    height: 40px;
-    width: 140px;
-  }
-}
- */
 
 /*
 
@@ -158,6 +144,14 @@ p {
   overflow-y: auto;
 }
 
+#modalText {
+  font-size: 24px;
+}
+
+#modalDesc {
+  font-size: 18px;
+}
+
 #modalCloseBtn {
   float: right;
   font-size: 2em;
@@ -166,3 +160,55 @@ p {
 #modalCloseBtn:hover {
   cursor: pointer;
 }
+
+@media (max-width: 850px) {
+  h1 {
+    font-size: 2em;
+    margin: 15px;
+  }
+  h2 {
+    font-size: 1em;
+    margin: 20px;
+  }
+  #search-container {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  #searchbar {
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+  }
+  #searchBtn, #resetBtn {
+    margin-top: 20px;
+    min-height: 30px;
+  }
+  #searchBtn {
+    width: 40%;
+  }
+  #resetBtn {
+    width: 40%;
+  }
+  #thumbnail-container {
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  #thumbnail-container div {
+    margin: 10px;
+    padding: 0px;
+/*    border: solid 1px black;*/
+    max-width: 50%;
+    box-sizing: border-box;
+  }
+  #thumbnail-container div img {
+    max-height: 150px;
+  }
+  #modalDesc {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
