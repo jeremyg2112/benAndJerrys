@@ -167,24 +167,6 @@ resetBtn.addEventListener("keypress", function(){
 
 //FUNCTIONS
 
-function addMouseListeners() {
-  for (let i = 0; i < thumbnailArr.length; i++) {
-
-  thumbnailArr[i].addEventListener("mouseenter", function(event) {
-    event.target.nextSibling.className = "name";
-  });
-
-    thumbnailArr[i].addEventListener("mouseleave", function(event) {
-    event.target.nextSibling.className = "name-hide";
-  });
-
-    thumbnailArr[i].addEventListener("click", clickImage);
-  }
-};
-// Loops through images and adds event listeners to each.
-// The first two listeners allow flavor name to be toggled when mouse enters/leaves.
-// Third listener opens modal box when an image is clicked.
-
 
 function populateImages() {
   flavors.forEach(function(obj) {
@@ -214,6 +196,26 @@ function populateImages() {
 // populates flavor images on page which contain object data that can be used by script
 
 
+function addMouseListeners() {
+  for (let i = 0; i < thumbnailArr.length; i++) {
+
+  thumbnailArr[i].addEventListener("mouseenter", function(event) {
+    event.target.nextSibling.className = "name";
+  });
+
+    thumbnailArr[i].addEventListener("mouseleave", function(event) {
+    event.target.nextSibling.className = "name-hide";
+  });
+
+    thumbnailArr[i].addEventListener("click", clickImage);
+  }
+};
+// Loops through images and adds event listeners to each.
+// The first two listeners allow flavor name to be toggled when mouse enters/leaves.
+// Third listener opens modal box when an image is clicked.
+
+
+
 function clickImage(event) {
       console.log(event.target.parentNode.id +" was clicked");
       modal.style.display = "block";
@@ -233,7 +235,7 @@ function getQueries() {
     return !regex.test(obj.tags);
   });
 };
-// normalizes user input into a single regex and then returns array of objects which do not contain corresponding tags
+// normalizes user input into a single regex and then returns array of objects which do NOT contain corresponding tags
 
 
 function removeNode(arr) {
@@ -242,7 +244,7 @@ function removeNode(arr) {
     document.getElementById("thumbnail-container").removeChild(document.getElementById(obj.flavorID));
   })
 };
-// accepts array from getQueries() and uses object flavorID property to delete corresponding nodes from HTML
+// accepts array from getQueries() and deletes those elements by using the object flavorID property 
 
 
 function checkNumberOfElements() {
@@ -275,7 +277,7 @@ function resetFlavors() {
   populateImages();
   addMouseListeners();
 };
-// for use when page is reset. deletes all flavors from page and repopulates them 
+// for use when reset button is clicked. clears HTML from <div> container and then adds entire flavor list back (along with mouse click event listeners)
 
 
 function closeModal() {

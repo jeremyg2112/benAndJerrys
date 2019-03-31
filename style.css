@@ -71,12 +71,7 @@ p {
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.2);
     outline: none;
   }
-  
 
-#modalImg {
-  max-height: 250px;
-  margin: auto;
-}
 
 .name-hide {
   text-align: center;
@@ -139,6 +134,7 @@ p {
 
 */
 
+
 .modal {
   display: none;
   position: fixed;
@@ -166,6 +162,11 @@ p {
   text-align: center;
   box-sizing: border-box;
   overflow-y: auto;
+}
+
+#modalImg {
+  max-height: 250px;
+  margin: auto;
 }
 
 #modalText {
