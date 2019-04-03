@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
 /*  width: 100%; */
   background-color: #FFE5E9;
@@ -19,12 +23,6 @@ h1, h2 {
     font-family: 'Baloo Chettan', cursive;
 }
 
-p {
-    color: rgb(20,40,130);
-    font-family: 'Baloo Chettan', cursive;
-    font-size: 1.4em;
-}
-
 #search_container, #searchbar {
   text-align: center;
 }
@@ -35,7 +33,7 @@ p {
 
 #searchbar {
   min-width: 250px;
-  height: 20px;
+  height: 30px;
   width: 400px;
   border: solid 3px lightblue;
 }
@@ -65,28 +63,13 @@ p {
   
   #searchBtn:hover, #resetBtn:hover {
     background: rgb(20,40,130);
+    transition: 0.15s;
   }
 
   #searchBtn:focus, #resetBtn:focus {
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.2);
     outline: none;
   }
-
-
-.name-hide {
-  text-align: center;
-  color: #FFE5E9;
-  font-family: 'Baloo Chettan', cursive;
-  font-size: 18px;
-  opacity: 0%;
-}
-
-.name {
-  text-align: center;
-  color: rgb(20,40,130);
-  font-family: 'Baloo Chettan', cursive;
-  font-size: 18px;
-}
 
 #thumbnail-container {
   margin-top: 45px;
@@ -97,19 +80,30 @@ p {
   flex-wrap: wrap;
 }
 
-#thumbnail-container > div > img {
-/*   padding: 70px;
-  padding-top: 20px;
-  padding-bottom: 20px; */
+.flavorImgDisplay > img {
   max-height: 250px;
-  transition: all 0.2s;
   margin: 20px 70px;
 }
 
-#thumbnail-container > div > img:hover {
-  transform: scale(1.1);
+.flavorImgHide {
+  display: none;
 }
 
+.flavorImgDisplay:hover > img {
+  transform: scale(1.1);
+  transition: 0.2s;
+}
+
+.hoverTitle {
+  text-align: center;
+  font-family: 'Baloo Chettan', cursive;
+  font-size: 18px;
+  color: rgba(0,0,0,0);
+}
+
+.flavorImgDisplay:hover > .hoverTitle {
+  color: rgba(20,40,130,1);
+}
 
 /*
 
@@ -177,6 +171,11 @@ p {
   font-size: 20px;
 }
 
+#modalDesc, #modalText {
+  font-family: 'Baloo Chettan', cursive;
+  color: rgb(20,40,130);
+}
+
 #modalCloseBtn {
   float: right;
   font-size: 2em;
@@ -186,14 +185,83 @@ p {
   cursor: pointer;
 }
 
+#tags-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 60%;
+  margin: auto;
+  margin-top: 40px;
+}
+
+/*.tagContainerDisplay {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+.tagContainerHide {
+  display: none;
+}
+
+
+
+*/
+.tagButtonDisplay {
+    border-radius: 29px;
+    height: 58px;
+    line-height: 56px;
+    margin-top: 0px;
+    border: 1px solid #DFE1E5;
+    background-color: white;
+    border-radius: 24px;
+    box-sizing: border-box;
+    color: rgb(20,40,130);
+    font-size: 14px;
+    font-weight: 400;
+    height: 48px;
+    line-height: 46px;
+    padding: 0 20px;
+    position: relative;
+    white-space: nowrap;
+}
+/*
+.tagButtonDisplay:hover {
+  background: rgb(20,40,130);
+  color: white;
+}*/
+
+.tagButtonClicked {
+      border-radius: 29px;
+    height: 58px;
+    line-height: 56px;
+    margin-top: 0px;
+    border: 1px solid #DFE1E5;
+    background-color: rgb(20,40,130);
+    border-radius: 24px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    height: 48px;
+    line-height: 46px;
+    padding: 0 20px;
+    position: relative;
+    white-space: nowrap;
+}
+
+.tagButtonHide {
+  display: none;
+}
+
+
 @media (max-width: 850px) {
   h1 {
     font-size: 2em;
     margin: 15px;
   }
   h2 {
-    font-size: 1em;
-    margin: 20px;
+    display: none;
   }
   #search-container {
     width: 100%;
@@ -203,11 +271,6 @@ p {
     width: 100%;
     box-sizing: border-box;
     height: 40px;
-    background: blue;
-  }
-  #searchBtn, #resetBtn {
-    margin-top: 20px;
-    min-height: 30px;
   }
   #searchBtn {
     width: 33%;
@@ -215,8 +278,20 @@ p {
   #resetBtn {
     width: 33%;
   }
+  #searchBtn, #resetBtn {
+    margin-top: 20px;
+    min-height: 30px;
+  }
+  #tags-container {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .flavorImgDisplay > img {
+    max-height: 160px;
+  }
   #thumbnail-container {
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     width: 100%;
     box-sizing: border-box;
     margin-right: 0;
@@ -229,16 +304,24 @@ p {
     max-width: 50%;
     box-sizing: border-box;
   }
+/*  .flavorImgDisplay {
+        margin: 6%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    max-width: 50%;
+  }*/
   #thumbnail-container div img {
     max-height: 160px;
     margin: 15px;
   }
+  .hoverTitle {
+    display: none;
+  }
+
   #modalDesc {
     display: flex;
     flex-wrap: wrap;
   }
-  .name, .name-hide {
-    display: none;
-  }
+
 }
 
