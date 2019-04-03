@@ -26,7 +26,7 @@ const flavorsArr = [
     name: "Banana Split",
     description: "Banana & Strawberry Ice Creams with Walnuts, Fudge Chunks & a Fudge Swirl",
     image: "https://www.benjerry.com/files/live/sites/systemsite/files/flavors/products/us/pint/banana-split-detail.png",
-    tags: ["banana", "strawberry", "fudge", "swirl", "nut", "fruit", "banana_split"]
+    tags: ["banana", "strawberry", "fudge", "swirl", "nut", "fruit", "banana_split", "banana_split"]
   },
   {
     flavorID: "chunkyMonkey",
@@ -61,14 +61,14 @@ const flavorsArr = [
     name: "Americone Dream", 
     description: "Vanilla Ice Cream with Fudge-Covered Waffle Cone Pieces & a Caramel Swirl",
     image: "https://www.benjerry.com/files/live/sites/systemsite/files/flavors/products/us/pint/americone-dream-detail.png",
-    tags: ["vanilla", "fudge", "waffle", "cone", "caramel", "swirl", "stephen_colbert", "americone_dream"]
+    tags: ["vanilla", "fudge", "waffle", "cone", "caramel", "swirl", "americone_dream"]
   }, 
   {
     flavorID: "cherryGarcia", 
     name: "Cherry Garcia", 
     description: "Cherry Ice Cream with Cherries & Fudge Flakes",
     image: "https://www.benjerry.com/files/live/sites/systemsite/files/flavors/products/us/pint/cherry-garcia-detail.png",
-    tags: ["cherry", "cherries", "fudge", "cherry_garcia", "fruit"]
+    tags: ["cherries", "fudge", "fruit", "cherry_garcia"]
   },
   {
     flavorID: "mintChocolateCookie",
@@ -82,7 +82,7 @@ const flavorsArr = [
     name: "Peanut Butter Cup", 
     description: "Peanut Butter Ice Cream with Peanut Butter Cups",
     image: "https://www.benjerry.com/files/live/sites/systemsite/files/flavors/products/us/pint/peanut-butter-cup-detail.png",
-    tags: ["peanut_butter", "peanut_butter_cup"]
+    tags: ["peanut_butter", "peanut_butter_cup", "peanut_butter_cup"]
   }, 
   {
     flavorID: "coffeeCoffeeBuzzBuzzBuzz",
@@ -96,14 +96,14 @@ const flavorsArr = [
     name: "Cinnamon Buns", 
     description: "Caramel Ice Cream with Cinnamon Bun Dough & a Cinnamon Streusel Swirl", 
     image: "https://www.benjerry.com/files/live/sites/systemsite/files/flavors/products/us/pint/cinnamon-bun-detail.png", 
-    tags: ["cinnamon", "caramel", "cinnamon_bun", "dough", "streusel", "swirl"]
+    tags: ["cinnamon", "caramel", "cinnamon_bun", "dough", "streusel", "swirl", "cinnamon_buns"]
   }, 
   {
     flavorID: "vanilla", 
     name: "Vanilla", 
     description: "Vanilla Ice Cream",
     image: "https://www.benjerry.com/files/live/sites/systemsite/files/flavors/products/us/pint/vanilla-detail.png",
-    tags: ["vanilla"]
+    tags: ["vanilla", "vanilla"]
   }, 
   {
     flavorID: "saltedCaramelAlmond", 
@@ -117,14 +117,14 @@ const flavorsArr = [
     name: "The Tonight Dough",
     description: "Caramel & Chocolate Ice Creams with Chocolate Cookie Swirls & Gobs of Chocolate Chip Cookie Dough & Peanut Butter Cookie Dough.",
     image: "https://www.benjerry.com/files/live/sites/systemsite/files/flavors/products/us/pint/tonight-dough-detail.png",
-    tags: ["caramel", "chocolate", "cookie", "swirl", "cookie_dough", "chocolate_chip", "peanut_butter", "jimmy_fallon", "the_tonight_dough"]
+    tags: ["caramel", "chocolate", "cookie", "swirl", "cookie_dough", "chocolate_chip", "peanut_butter", "the_tonight_dough"]
   }, 
   {
     flavorID: "redVelvetCake", 
     name: "Red Velvet Cake", 
     description: "Red Velvet Cake Ice Cream with Red Velvet Cake Pieces & a Cream Cheese Frosting Swirl",
     image: "https://www.benjerry.com/files/live/sites/systemsite/files/flavors/products/us/pint/red-velvet-detail.png",
-    tags: ["cake", "red_velvet", "red_velvet_cake", "cream_cheese", "frosting", "swirl"]
+    tags: ["cake", "red_velvet", "red_velvet_cake", "cream_cheese", "frosting", "swirl", "red_velvet_cake"]
   }
 ]
 
@@ -252,7 +252,9 @@ function appendTags(arr) {
 function findTags(flavorsToDisplay) {
   let tagsToDisplay = [];
   flavorsToDisplay.forEach(function(obj) {
-    obj.tags.forEach(function(tag) {
+    // last index of obj.tags contains the full name of the flavor, so this is removed from tag button options
+    let objTagsMinusLast = obj.tags.slice(0,-1);
+    objTagsMinusLast.forEach(function(tag) {
       if (tagsToDisplay.indexOf(tag) < 0) {
         tagsToDisplay.push(tag);
       }
@@ -269,9 +271,11 @@ function showTags(tagsToDisplay) {
       // });
   //then shows appropriate buttons by switching class name      
     tagsToDisplay.forEach(function(tag) {
+      if (!appliedTags[0].test(tag)) {
       let buttonToDisplay = document.getElementById(tag + "_button");
       buttonToDisplay.className = "tagButtonDisplay";
-    })
+    }
+  })
 }
 
 function restrictResults(e) {
