@@ -284,7 +284,9 @@ function restrictResults(e) {
   appliedTags.push(searchForTag);
   showResults(getResults());
   let tagsToKeep = findTags(getResults()).map(function(tag) {
+    if (!appliedTags[0].test(tag)) {
     return tag + "_button";
+    }
   })
   let currentlyDisplayedButtons = document.getElementsByClassName("tagButtonDisplay");
   for (let i = 0; i < currentlyDisplayedButtons.length; i++) {
@@ -305,7 +307,9 @@ function undoTagRestriction(e) {
     appliedTags.splice(appliedTags.indexOf(searchForTag), 1);
     showResults(getResults());
     let tagsToAddBack = findTags(getResults()).map(function(tag) {
+      if (!appliedTags[0].test(tag)) {
       return tag + "_button";
+      }
     })
     let currentlyHiddenButtons = document.getElementsByClassName("tagButtonHide");
       for (let i = 0; i < currentlyHiddenButtons.length; i++) {
@@ -340,6 +344,7 @@ appendTags(findTags(flavorsArr));
 
 searchBarSelector.addEventListener("keypress", function(e){
     if (e.keyCode == 13) {
+      resetFlavors();
       allSearchActions();
     }
 });
