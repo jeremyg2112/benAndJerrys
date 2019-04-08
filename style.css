@@ -3,13 +3,12 @@
 }
 
 body {
-/*  width: 100%; */
   background-color: #FFE5E9;
 }
 
+
 h1 {
   font-size: 48px;
-/*  padding-top: 20px;*/
 }
 
 h2 {
@@ -72,26 +71,25 @@ h1, h2 {
   }
 
 #thumbnail-container {
-  margin-top: 45px;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin: 5%;
+  margin-top: 2%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.flavorImgDisplay > img {
+.flavorImgNode:hover > img {
+  transform: scale(1.1);
+  transition: 0.2s;
+}
+
+.flavorImgNode > img {
   max-height: 250px;
   margin: 20px 70px;
 }
 
-.flavorImgHide {
+.flavorImgNodeHide  {
   display: none;
-}
-
-.flavorImgDisplay:hover > img {
-  transform: scale(1.1);
-  transition: 0.2s;
 }
 
 .hoverTitle {
@@ -101,33 +99,9 @@ h1, h2 {
   color: rgba(0,0,0,0);
 }
 
-.flavorImgDisplay:hover > .hoverTitle {
+.flavorImgNode:hover > .hoverTitle {
   color: rgba(20,40,130,1);
 }
-
-/*
-
-#tags-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  
-  .tags {
-    flex: 0 0 auto;
-  }
-}
-
-.tags {
-  display: inline-block;
-  min-height: 100px;
-  min-width: 100px;
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
-*/
-
 
 .modal {
   display: none;
@@ -194,20 +168,9 @@ h1, h2 {
   margin-top: 40px;
 }
 
-/*.tagContainerDisplay {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  flex-wrap: wrap;
-}
-.tagContainerHide {
-  display: none;
-}
 
 
-
-*/
-.tagButtonDisplay {
+.tagButton {
     border-radius: 29px;
     height: 58px;
     line-height: 56px;
@@ -225,11 +188,6 @@ h1, h2 {
     position: relative;
     white-space: nowrap;
 }
-/*
-.tagButtonDisplay:hover {
-  background: rgb(20,40,130);
-  color: white;
-}*/
 
 .tagButtonClicked {
       border-radius: 29px;
@@ -286,7 +244,7 @@ h1, h2 {
     width: 100%;
     margin-top: 20px;
   }
-  .flavorImgDisplay > img {
+  .flavorImgNode > img {
     max-height: 160px;
   }
   #thumbnail-container {
@@ -300,16 +258,9 @@ h1, h2 {
   #thumbnail-container div {
     margin: 10px;
     padding: 0px;
-/*    border: solid 1px black;*/
     max-width: 50%;
     box-sizing: border-box;
   }
-/*  .flavorImgDisplay {
-        margin: 6%;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    max-width: 50%;
-  }*/
   #thumbnail-container div img {
     max-height: 160px;
     margin: 15px;
@@ -322,6 +273,5 @@ h1, h2 {
     display: flex;
     flex-wrap: wrap;
   }
-
 }
 
